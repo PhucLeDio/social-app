@@ -3,11 +3,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 First, run this command to install the dependencies:
+
 ```bash
 npm i
 ```
 
+Second, create a new .env folder and parse all the path
+
 Then, run this to start the project
+
 ```bash
 npm run dev
 ```
