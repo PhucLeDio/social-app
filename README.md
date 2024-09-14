@@ -8,7 +8,7 @@ First, run this command to install the dependencies:
 npm i
 ```
 
-Second, create a new .env folder and parse all the path
+Second, create a new .env file and parse all the path
 
 Then, run this to start the project
 
