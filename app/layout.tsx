@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={cn(font.className, "bg-white dark:bg-[#313338]")}
+          className={cn(font.className, "text-white dark:bg-[#313338]")}
         >
           <ThemeProvider attribute="class" enableSystem={false} storageKey="discord-theme">
             {children}

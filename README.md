@@ -10,7 +10,13 @@ npm i
 
 Second, Parse all the path to the .env file
 
-Then, run this to start the project
+Third, run this command on another terminal to run the studio
+
+```bash
+npx prima studio
+```
+
+Then, run this command to start the project
 
 ```bash
 npm run dev
