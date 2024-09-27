@@ -35,12 +35,10 @@ export const NavigationSidebar = async () => {
                 {servers.map((server) => (
                     <div key={server.id} className="mb-4">
                         <NavigationItem 
-                        id={server.id} 
-                        name={server.name}
-                        imageUrl={server.imageUrl} 
-                        
+                            id={server.id} 
+                            name={server.name}
+                            imageUrl={server.imageUrl}   
                         />
-
                     </div>
                 )
             )}
@@ -49,16 +47,13 @@ export const NavigationSidebar = async () => {
             <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
                 <ModeToggle />
                     <UserButton 
-                    afterSignOutUrl="/"
+                    afterSwitchSessionUrl="/"
                     appearance={{
                         elements: {
                             avatarBox: "h-[48px] w-[48px]"
                         }
                     }}
-                    />
-
-                
-
+                />
             </div>
         </div>
     )
