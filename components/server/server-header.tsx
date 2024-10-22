@@ -60,13 +60,19 @@ export const ServerHeader = ({
                     <DropdownMenuSeparator />
                 )}
                 {isAdmin && (
-                    <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-red-600">
+                    <DropdownMenuItem 
+                    onClick={() => onOpen("deleteServer", { server })}
+                    className="cursor-pointer px-3 py-2 text-sm text-red-600"
+                    >
                         Delete Server
                         <Trash className="h-4 w-4 ml-auto" color="red" />
                     </DropdownMenuItem>
                 )}
                 {!isAdmin && (
-                    <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-red-600">
+                    <DropdownMenuItem
+                    onClick={() => onOpen("leaveServer", { server })}
+                     className="cursor-pointer px-3 py-2 text-sm text-red-600"
+                     >
                         Leave Server
                         <LogOut className="h-4 w-4 ml-auto" color="red" />
                     </DropdownMenuItem>
