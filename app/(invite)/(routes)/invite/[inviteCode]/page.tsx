@@ -20,6 +20,7 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
         return redirect("/");
     }
 
+    // Check if the server exists and if the profile is already a member
     const existingServer = await db.server.findFirst({
         where: {
             inviteCode: params.inviteCode,
@@ -35,9 +36,21 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
         return redirect(`/servers/${existingServer.id}`);
     }
 
-    const server = await db.server.update({
+    // Find the server by the invite code
+    const server = await db.server.findFirst({
         where: {
             inviteCode: params.inviteCode,
+        },
+    });
+
+    // If no server is found, you may want to handle this case
+    if (!server) {
+        return redirect("/"); // Redirect or handle the error appropriately
+    }
+
+    const updatedServer = await db.server.update({
+        where: {
+            id: server.id,
         },
         data: {
             members: {
