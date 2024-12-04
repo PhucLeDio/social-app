@@ -31,7 +31,7 @@ export default function RootLayout({
   // console.log('RootLayout children:', children); // Add this line
 
   return (
-    <ClerkProvider>
+    <ClerkProvider dynamic>
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(font.className, "text-white dark:bg-[#313338]")}
