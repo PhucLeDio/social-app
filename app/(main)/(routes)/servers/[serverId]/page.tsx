@@ -1,18 +1,19 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { redirectToSignIn } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { channel } from "diagnostics_channel";
 import { redirect } from "next/navigation";
 
+
 interface ServerIdPageProps{
-    params: {
+    params: Promise<{
         serverId:string;
-    }
+    }>
 };
 
-const ServerIdPage =  async ({
-    params
-}: ServerIdPageProps) => {
+const ServerIdPage =  async (props: ServerIdPageProps) => {
+    const params = await props.params;
+    const { redirectToSignIn } = await auth()
     const profile = await currentProfile();
 
     if (!profile){

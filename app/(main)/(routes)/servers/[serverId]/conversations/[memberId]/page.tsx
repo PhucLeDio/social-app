@@ -8,15 +8,14 @@ import { redirect } from "next/navigation";
 
 
 interface MemberIdPageProps {
-    params: {
+    params: Promise<{
         memberId: string;
         serverId: string;
-    }
+    }>
 }
 
-const MemberIdPage = async ({
-    params
-}: MemberIdPageProps) => {
+const MemberIdPage = async (props: MemberIdPageProps) => {
+    const params = await props.params;
     const profile = await currentProfile();
 
     if(!profile){
