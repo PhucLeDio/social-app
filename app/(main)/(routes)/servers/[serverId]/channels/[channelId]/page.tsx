@@ -1,23 +1,21 @@
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
+import { ChatMessages } from "@/components/chat/chat-messages";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { RedirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-
 interface ChannelIdPageProps {
-    params: {
+    params: Promise<{
         serverId: string;
         channelId: string;
-    }
+    }>
 }
 
 
-const ChannelIdPage = async ({
-    params
-
-}: ChannelIdPageProps) => {
+const ChannelIdPage = async (props: ChannelIdPageProps) => {
+    const params = await props.params;
     const profile = await currentProfile();
 
     if (!profile) {
@@ -48,9 +46,22 @@ const ChannelIdPage = async ({
             name={channel.name} 
             type="channel" 
             />
-            <div className="flex-1">
-                Future Mess
-            </div>
+
+            <ChatMessages 
+            member={member}
+            name={channel.name}
+            chatId={channel.id}
+            type="channel"
+            apiUrl="/api/messages"
+            socketUrl="/api/socket/messages"
+            socketQuery={{
+                channelId: channel.id,
+                serverId: channel.serverId,
+            }}
+            paramKey="channelId"
+            paramValue={channel.id}
+            />
+
             <ChatInput 
             name={channel.name}
             type="channel"

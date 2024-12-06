@@ -132,12 +132,14 @@ const FormDescription = React.forwardRef<
   const { formDescriptionId } = useFormField()
 
   return (
-    <p
+    <div>
+      <p
       ref={ref}
       id={formDescriptionId}
       className={cn("text-[0.8rem] text-muted-foreground", className)}
       {...props}
-    />
+      />
+    </div>
   )
 })
 FormDescription.displayName = "FormDescription"
@@ -154,14 +156,16 @@ const FormMessage = React.forwardRef<
   }
 
   return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn("text-[0.8rem] font-medium text-destructive", className)}
-      {...props}
-    >
-      {body}
-    </p>
+    <div>
+      <p
+        ref={ref}
+        id={formMessageId}
+        className={cn("text-[0.8rem] font-medium text-destructive", className)}
+        {...props}
+      >
+        {body}
+      </p>
+    </div>
   )
 })
 FormMessage.displayName = "FormMessage"

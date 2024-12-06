@@ -15,6 +15,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider"
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { Socket } from "socket.io";
 import { SocketProvider } from "@/components/providers/socket-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
   // console.log('RootLayout children:', children); // Add this line
 
   return (
-    <ClerkProvider>
+    <ClerkProvider dynamic>
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(font.className, "text-white dark:bg-[#313338]")}
@@ -44,6 +45,9 @@ export default function RootLayout({
           >
             <SocketProvider >
               <ModalProvider />
+              <QueryProvider>
+              {children} 
+              </QueryProvider>
             </SocketProvider>
             <ModalProvider />   
             {children} {/* Ensure children is rendered here */}
