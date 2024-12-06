@@ -3,7 +3,7 @@ import { NextApiRequest } from "next";
 import { NextApiResponeServerIo } from "@/types";
 import { error } from "console";
 import { db } from "@/lib/db";
-import { channel } from "diagnostics_channel";
+// import { channel } from "diagnostics_channel";
 
 export default async function handler(
     req: NextApiRequest,
@@ -56,7 +56,7 @@ export default async function handler(
             },
         });
 
-        if (!channel){
+        if (!Channel){
             return res.status(404).json({ message: "Channel not found"});
         }
 
@@ -65,7 +65,7 @@ export default async function handler(
             return res.status(404).json({ message: "Member not found"});
         }
 
-        const message = await  db.message.create({
+        const message = await db.message.create({
             data: {
                 content,
                 fileUrl,

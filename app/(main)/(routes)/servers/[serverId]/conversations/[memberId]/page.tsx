@@ -3,7 +3,8 @@ import { ChatHeader } from "@/components/chat/chat-header";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { redirectToSignIn } from "@clerk/nextjs/server";
+import { RedirectToSignIn } from "@clerk/nextjs";
+// import { redirectToSignIn } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 
@@ -19,7 +20,7 @@ const MemberIdPage = async (props: MemberIdPageProps) => {
     const profile = await currentProfile();
 
     if(!profile){
-        return redirectToSignIn();
+        return <RedirectToSignIn />;
     }
 
     const currentMember = await db.member.findFirst({
